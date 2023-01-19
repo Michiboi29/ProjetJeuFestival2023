@@ -41,7 +41,7 @@ void setup()
     stepper1.setEnablePin(PIN_EN1);
     stepper1.disableOutputs();
     stepper1.setMaxSpeed(MAX_SPEED);
-    pinMode(BUTTON_PIN, INPUT);
+    pinMode(BUTTON_PIN, INPUT_PULLUP);
     
     setMaxSpeed();
     stepper1.enableOutputs();
@@ -51,13 +51,23 @@ void setup()
 }
 
 bool buttonState = false;
+bool buttonLastState = false;
 void buttonToogle(){
+  buttonLastState = buttonState;
   if(digitalRead(BUTTON_PIN) == HIGH){
-    buttonState = !buttonState;
+    buttonState = true;
+  }
+  else{
+    buttonState = false;
+  }
+   
+  if(buttonState && !buttonLastState){
     setRandomSpeed();
+    stepper1.enableOutputs();
     stepper1.moveTo(POS_FINAL);
     Serial.println("bouton go boom");
   }
+  
 }
 
 void loop()
