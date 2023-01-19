@@ -9,9 +9,9 @@
 #define POS_INIT  0
 #define POS_FINAL 900
 #define MAX_SPEED 200
-#define MIN_SPEED 20
+#define MIN_SPEED 10
 #define MAX_ACCELERATION 100
-#define MIN_ACCELERATION 30
+#define MIN_ACCELERATION 10
 
 // Define some steppers and the pins the will use
 AccelStepper stepper1(AccelStepper::DRIVER, PIN_STEP1, PIN_DIR1);
